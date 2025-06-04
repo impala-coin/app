@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC (Impala Coin) Process Flow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .phase {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .phase:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .phase-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .phase-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+        }
+        
+        .acquisition { border-left-color: #e74c3c; }
+        .acquisition .phase-icon { background: #e74c3c; }
+        
+        .processing { border-left-color: #f39c12; }
+        .processing .phase-icon { background: #f39c12; }
+        
+        .distribution { border-left-color: #27ae60; }
+        .distribution .phase-icon { background: #27ae60; }
+        
+        .usage { border-left-color: #9b59b6; }
+        .usage .phase-icon { background: #9b59b6; }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .step:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #3498db;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .step h4 {
+            margin: 10px 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        
+        .step p {
+            margin: 0;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .partners {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .use-case {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .use-case:hover {
+            transform: scale(1.05);
+        }
+        
+        .use-case h4 {
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        
+        .use-case p {
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IMC (Impala Coin) Ecosystem</h1>
+            <p class="subtitle">Complete Process Flow from Acquisition to Usage</p>
+        </div>
+        
+        <div class="partners">
+            <h3>🤝 Telco Partners: Telcom & Airtel</h3>
+            <p>Seamless integration through existing mobile money infrastructure</p>
+        </div>
+        
+        <div class="flow-container">
+            <!-- Phase 1: Token Acquisition -->
+            <div class="phase acquisition">
+                <div class="phase-title">
+                    <div class="phase-icon">📱</div>
+                    Phase 1: IMC Token Acquisition
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>User Initiates Purchase</h4>
+                        <p>Customer opens SIM toolkit on their mobile device</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Enter Payment Details</h4>
+                        <p>User enters: Paybill number + Account number (their phone number) + Amount</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Payment Processed</h4>
+                        <p>Amount is deducted from user's mobile money account through Telco/Airtel</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-arrow">⬇️</div>
+            
+            <!-- Phase 2: Backend Processing -->
+            <div class="phase processing">
+                <div class="phase-title">
+                    <div class="phase-icon">⚙️</div>
+                    Phase 2: Backend Processing
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Telco Callback</h4>
+                        <p>Telco partner sends callback notification confirming successful payment collection</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h4>Payment Verification</h4>
+                        <p>IMC system verifies payment details and amount on collection paybill</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <h4>Token Calculation</h4>
+                        <p>System calculates equivalent IMC tokens based on current exchange rate</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-arrow">⬇️</div>
+            
+            <!-- Phase 3: Token Distribution -->
+            <div class="phase distribution">
+                <div class="phase-title">
+                    <div class="phase-icon">🪙</div>
+                    Phase 3: IMC Token Distribution
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <h4>IMC Issuance</h4>
+                        <p>IMC tokens are issued to user's account (linked to phone number)</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">8</div>
+                        <h4>SMS Confirmation</h4>
+                        <p>User receives SMS confirmation with transaction details and new IMC balance</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">9</div>
+                        <h4>Wallet Update</h4>
+                        <p>User's IMC wallet balance is updated in real-time</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-arrow">⬇️</div>
+            
+            <!-- Phase 4: Token Usage -->
+            <div class="phase usage">
+                <div class="phase-title">
+                    <div class="phase-icon">💰</div>
+                    Phase 4: IMC Token Usage Options
+                </div>
+                <div class="use-cases">
+                    <div class="use-case">
+                        <h4>📞 Buy Airtime</h4>
+                        <p>Convert IMC tokens back to airtime for voice calls and SMS</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>💵 Stable Coin Conversion</h4>
+                        <p>Exchange IMC for stable cryptocurrencies like USDC for international transactions</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>🏠 Yeshara Tokens</h4>
+                        <p>Purchase Yeshara tokens linked to tokenized real estate assets on blockchain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="partners" style="margin-top: 40px;">
+            <h3>🔗 Blockchain Integration</h3>
+            <p>All IMC and Yeshara tokens are secured on blockchain infrastructure for transparency and security</p>
+        </div>
+    </div>
+</body>
+</html>
